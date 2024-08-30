@@ -1,19 +1,12 @@
-import React from 'react';
-import moment from 'moment';
+import React from "react";
+
+import moment from "moment";
 
 const PostDetail = ({ post }) => {
   const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text;
 
-    if (Array.isArray(text)) {
-      modifiedText = (
-        <React.Fragment key={index}>
-          {text.map((item, i) => (
-            <React.Fragment key={i}>{item}</React.Fragment>
-          ))}
-        </React.Fragment>
-      );
-    } else if (obj) {
+    if (obj) {
       if (obj.bold) {
         modifiedText = <b key={index}>{text}</b>;
       }
@@ -31,19 +24,25 @@ const PostDetail = ({ post }) => {
       case "heading-three":
         return (
           <h3 key={index} className="text-xl font-semibold mb-4">
-            {modifiedText}
+            {modifiedText.map((item, i) => (
+              <React.Fragment key={i}>{item}</React.Fragment>
+            ))}
           </h3>
         );
       case "paragraph":
         return (
           <p key={index} className="mb-8">
-            {modifiedText}
+            {modifiedText.map((item, i) => (
+              <React.Fragment key={i}>{item}</React.Fragment>
+            ))}
           </p>
         );
       case "heading-four":
         return (
           <h4 key={index} className="text-md font-semibold mb-4">
-            {modifiedText}
+            {modifiedText.map((item, i) => (
+              <React.Fragment key={i}>{item}</React.Fragment>
+            ))}
           </h4>
         );
       case "image":
@@ -55,12 +54,6 @@ const PostDetail = ({ post }) => {
             width={obj.width}
             src={obj.src}
           />
-        );
-      case "code-block":
-        return (
-          <pre key={index} className="bg-gray-100 p-4 rounded">
-            <code>{modifiedText}</code>
-          </pre>
         );
       default:
         return modifiedText;
@@ -107,7 +100,7 @@ const PostDetail = ({ post }) => {
                 />
               </svg>
               <span className="align-middle">
-                {moment(post.createdAt).format('MMM DD, YYYY')}
+                {moment(post.createdAt).format("MMM DD, YYYY")}
               </span>
             </div>
           </div>
