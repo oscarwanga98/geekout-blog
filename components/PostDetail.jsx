@@ -1,5 +1,5 @@
-import React from "react";
-import moment from "moment";
+import React from 'react';
+import moment from 'moment';
 
 const PostDetail = ({ post }) => {
   const getContentFragment = (index, text, obj, type) => {
@@ -28,25 +28,25 @@ const PostDetail = ({ post }) => {
     }
 
     switch (type) {
-      case "heading-three":
+      case 'heading-three':
         return (
           <h3 key={index} className="text-xl font-semibold mb-4">
             {modifiedText}
           </h3>
         );
-      case "paragraph":
+      case 'paragraph':
         return (
           <p key={index} className="mb-8">
             {modifiedText}
           </p>
         );
-      case "heading-four":
+      case 'heading-four':
         return (
           <h4 key={index} className="text-md font-semibold mb-4">
             {modifiedText}
           </h4>
         );
-      case "image":
+      case 'image':
         return (
           <img
             key={index}
@@ -56,7 +56,7 @@ const PostDetail = ({ post }) => {
             src={obj.src}
           />
         );
-      case "code-block":
+      case 'code-block':
         return (
           <pre key={index} className="bg-gray-100 p-4 rounded">
             <code>{modifiedText}</code>
@@ -107,15 +107,13 @@ const PostDetail = ({ post }) => {
                 />
               </svg>
               <span className="align-middle">
-                {moment(post.createdAt).format("MMM DD, YYYY")}
+                {moment(post.createdAt).format('MMM DD, YYYY')}
               </span>
             </div>
           </div>
           <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
           {post.content.raw.children.map((typeObj, index) => {
-            const children = typeObj.children.map((item, itemindex) =>
-              getContentFragment(itemindex, item.text, item)
-            );
+            const children = typeObj.children.map((item, itemindex) => getContentFragment(itemindex, item.text, item));
             return getContentFragment(index, children, typeObj, typeObj.type);
           })}
         </div>
