@@ -1,5 +1,5 @@
-import React from 'react';
-import moment from 'moment';
+import React from "react";
+import moment from "moment";
 
 const PostDetail = ({ post }) => {
   const getContentFragment = (index, text, obj, type) => {
@@ -107,13 +107,15 @@ const PostDetail = ({ post }) => {
                 />
               </svg>
               <span className="align-middle">
-                {moment(post.createdAt).format('MMM DD, YYYY')}
+                {moment(post.createdAt).format("MMM DD, YYYY")}
               </span>
             </div>
           </div>
           <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
           {post.content.raw.children.map((typeObj, index) => {
-            const children = typeObj.children.map((item, itemindex) => getContentFragment(itemindex, item.text, item));
+            const children = typeObj.children.map((item, itemindex) =>
+              getContentFragment(itemindex, item.text, item)
+            );
             return getContentFragment(index, children, typeObj, typeObj.type);
           })}
         </div>
