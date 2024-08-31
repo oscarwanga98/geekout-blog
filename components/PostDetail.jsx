@@ -76,7 +76,7 @@ const PostDetail = ({ post }) => {
           <code
             key={index}
             className="bg-gray-100 p-2 rounded"
-            style={{ whiteSpace: 'pre-wrap', overflowX: 'auto' }} // Added styles
+            style={{ whiteSpace: 'pre-wrap', overflowX: 'auto', fontSize: '12px' }} // Added styles
           >
             {modifiedText}
           </code>
@@ -87,7 +87,11 @@ const PostDetail = ({ post }) => {
           <pre
             key={index}
             className="bg-gray-100 p-4 rounded"
-            style={{ whiteSpace: 'pre-wrap', overflowX: 'auto' }} // Added styles
+            style={{
+              whiteSpace: 'pre-wrap',
+              overflowX: 'auto',
+              fontSize: '12px',
+            }} // Added styles
           >
             <code>{modifiedText}</code>
           </pre>
@@ -131,6 +135,26 @@ const PostDetail = ({ post }) => {
             width={obj.width}
             src={obj.src}
           />
+        );
+      case 'unordered-list':
+        return (
+          <ul key={index} className="list-disc list-inside mb-4">
+            {modifiedText}
+          </ul>
+        );
+
+      case 'ordered-list':
+        return (
+          <ol key={index} className="list-decimal list-inside mb-4">
+            {modifiedText}
+          </ol>
+        );
+
+      case 'list-item':
+        return (
+          <li key={index} className="mb-1">
+            {modifiedText}
+          </li>
         );
       default:
         return modifiedText;
