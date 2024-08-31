@@ -28,11 +28,41 @@ const PostDetail = ({ post }) => {
     }
 
     switch (type) {
+      case 'heading-one':
+        return (
+          <h1 key={index} className="text-3xl font-bold mb-4">
+            {modifiedText}
+          </h1>
+        );
+      case 'heading-two':
+        return (
+          <h2 key={index} className="text-2xl font-bold mb-4">
+            {modifiedText}
+          </h2>
+        );
       case 'heading-three':
         return (
           <h3 key={index} className="text-xl font-semibold mb-4">
             {modifiedText}
           </h3>
+        );
+      case 'heading-four':
+        return (
+          <h4 key={index} className="text-md font-semibold mb-4">
+            {modifiedText}
+          </h4>
+        );
+      case 'heading-five':
+        return (
+          <h5 key={index} className="text-sm font-semibold mb-4">
+            {modifiedText}
+          </h5>
+        );
+      case 'heading-six':
+        return (
+          <h6 key={index} className="text-xs font-semibold mb-4">
+            {modifiedText}
+          </h6>
         );
       case 'paragraph':
         return (
@@ -40,11 +70,46 @@ const PostDetail = ({ post }) => {
             {modifiedText}
           </p>
         );
-      case 'heading-four':
+      case 'code':
         return (
-          <h4 key={index} className="text-md font-semibold mb-4">
+          <code key={index} className="bg-gray-100 p-2 rounded">
             {modifiedText}
-          </h4>
+          </code>
+        );
+      case 'code-block':
+        return (
+          <pre key={index} className="bg-gray-100 p-4 rounded">
+            <code>{modifiedText}</code>
+          </pre>
+        );
+      case 'iframe':
+        return (
+          <iframe
+            key={index}
+            src={obj.src}
+            width={obj.width}
+            height={obj.height}
+            frameBorder="0"
+            allowFullScreen
+            title=" "
+          />
+        );
+      case 'table':
+        return (
+          <table key={index} className="w-full mb-8">
+            <tbody>{modifiedText}</tbody>
+          </table>
+        );
+      case 'link':
+        return (
+          <a
+            key={index}
+            href={obj.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {modifiedText}
+          </a>
         );
       case 'image':
         return (
@@ -55,12 +120,6 @@ const PostDetail = ({ post }) => {
             width={obj.width}
             src={obj.src}
           />
-        );
-      case 'code-block':
-        return (
-          <pre key={index} className="bg-gray-100 p-4 rounded">
-            <code>{modifiedText}</code>
-          </pre>
         );
       default:
         return modifiedText;
