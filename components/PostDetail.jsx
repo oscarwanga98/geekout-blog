@@ -70,18 +70,29 @@ const PostDetail = ({ post }) => {
             {modifiedText}
           </p>
         );
+
       case 'code':
         return (
-          <code key={index} className="bg-gray-100 p-2 rounded">
+          <code
+            key={index}
+            className="bg-gray-100 p-2 rounded"
+            style={{ whiteSpace: 'pre-wrap', overflowX: 'auto' }} // Added styles
+          >
             {modifiedText}
           </code>
         );
+
       case 'code-block':
         return (
-          <pre key={index} className="bg-gray-100 p-4 rounded">
+          <pre
+            key={index}
+            className="bg-gray-100 p-4 rounded"
+            style={{ whiteSpace: 'pre-wrap', overflowX: 'auto' }} // Added styles
+          >
             <code>{modifiedText}</code>
           </pre>
         );
+
       case 'iframe':
         return (
           <iframe
